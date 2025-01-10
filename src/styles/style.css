@@ -1,0 +1,180 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap");
+@media screen and (max-width: 960px) {
+  html {
+    font-size: 18px;
+  }
+}
+@media screen and (max-width: 640px) {
+  html {
+    font-size: 16px;
+  }
+}
+@media screen and (max-width: 480px) {
+  html {
+    font-size: 14px;
+  }
+}
+@media screen and (max-width: 395px) {
+  html {
+    font-size: 12px;
+  }
+}
+/* CSS Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  line-height: 1.5;
+  font-family: "Noto Sans KR", serif;
+  -webkit-font-smoothing: antialiased;
+  font-size: 1rem;
+  font-weight: bold;
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+input,
+textarea,
+button {
+  font-family: "Noto Sans KR", serif;
+}
+
+body {
+  background-color: #f5f5f5;
+  margin: 0;
+  padding: 0;
+}
+
+.todo_container {
+  text-align: center;
+  width: 60%;
+  margin: 4.166rem auto;
+}
+.todo_container h1 {
+  margin-bottom: 2.083rem;
+}
+.todo_container button {
+  padding: 1.041rem;
+  background-color: darksalmon;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.todo_container input {
+  border: none;
+  border-bottom: 3px solid #fff;
+  color: #000;
+  background-color: transparent;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 0;
+}
+.todo_container input:focus {
+  outline: none;
+}
+.todo_container input::placeholder {
+  color: darksalmon;
+}
+.todo_container .wrap_btn {
+  display: flex;
+  margin-bottom: 2.083rem;
+}
+.todo_container .wrap_btn button {
+  font-weight: 500;
+  padding: 0.208rem;
+  padding: 0.416rem 0.833rem;
+}
+.todo_container .wrap_btn button + button {
+  margin-left: 0.416rem;
+}
+.todo_container .inputbox {
+  margin-bottom: 2.083rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+.todo_container .inputbox input {
+  width: 87%;
+  font-size: 1.083rem;
+  padding: 1.041rem;
+  transition: font 0.2s;
+}
+.todo_container .inputbox input:focus {
+  font-size: 1.208rem;
+}
+.todo_container .inputbox button {
+  width: 10%;
+}
+.todo_container .listbox li {
+  margin: 10px auto;
+  padding: 1.041rem;
+  width: 100%;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-align: left;
+}
+.todo_container .listbox li .wrap_edit {
+  display: flex;
+}
+.todo_container .listbox li .wrap_edit button:first-of-type {
+  margin-left: auto;
+}
+.todo_container .listbox li .wrap_edit button + button {
+  margin-left: 0.416rem;
+}
+.todo_container .listbox li .wrap_edit button:nth-of-type(2) {
+  background-color: #008080;
+}
+.todo_container .listbox li .wrap_edit button:last-of-type {
+  background-color: #e2725b;
+}
+.todo_container .listbox li p {
+  display: inline;
+  text-decoration-color: #e2725b;
+}
+.todo_container .listbox li input {
+  display: inline;
+  font-size: 1rem;
+  padding: 0.416rem;
+}
+
+@media screen and (max-width: 960px) {
+  .todo_container {
+    width: 90%;
+  }
+  .todo_container .inputbox input {
+    width: 77%;
+  }
+  .todo_container .inputbox button {
+    width: 20%;
+  }
+  .todo_container .listbox .wrap_edit {
+    margin-top: 0.625rem;
+  }
+  .todo_container .listbox .wrap_edit button {
+    padding: 0.416rem 0.625rem;
+  }
+}

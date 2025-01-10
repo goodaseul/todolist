@@ -1,0 +1,129 @@
+body {
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+.todo_container {
+    text-align: center;
+    width: 60%;
+    margin: rem(200px) auto;
+    h1 {
+        margin-bottom: rem(100px);
+    }
+    button {
+        padding: rem(50px);
+        background-color: darksalmon;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    input {
+        border: none;
+        border-bottom: 3px solid #fff;
+        color: #000;
+        background-color: transparent;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-radius: 0;
+        &:focus {
+            outline: none;
+        }
+        &::placeholder {
+            color: darksalmon;
+        }
+    }
+    .wrap_btn {
+        display: flex;
+        margin-bottom: rem(100px);
+        button {
+            font-weight: 500;
+            padding: rem(10px);
+            padding: rem(20px) rem(40px);
+            + button {
+                margin-left: rem(20px);
+            }
+        }
+    }
+    .inputbox {
+        margin-bottom: rem(100px);
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        input {
+            width: 87%;
+            font-size: rem(52px);
+            padding: rem(50px);
+            transition: font 0.2s;
+            &:focus {
+                font-size: rem(58px);
+            }
+        }
+        button {
+            width: 10%;
+        }
+    }
+    .listbox {
+        li {
+            margin: 10px auto;
+            padding: rem(50px);
+            width: 100%;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: left;
+            .wrap_edit {
+                display: flex;
+                button {
+                    &:first-of-type {
+                        margin-left: auto;
+                    }
+                    + button {
+                        margin-left: rem(20px);
+                    }
+                    &:nth-of-type(2) {
+                        background-color: #008080;
+                    }
+                    &:last-of-type {
+                        background-color: #e2725b;
+                    }
+                }
+            }
+            p {
+                display: inline;
+                text-decoration-color: #e2725b;
+            }
+            input {
+                display: inline;
+                font-size: rem(48px);
+                padding: rem(20px);
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 960px) {
+    .todo_container {
+        width: 90%;
+        .inputbox {
+            input {
+                width: 77%;
+            }
+            button {
+                width: 20%;
+            }
+        }
+        .listbox {
+            .wrap_edit {
+                margin-top: rem(30px);
+                button {
+                    padding: rem(20px) rem(30px);
+                }
+            }
+        }
+    }
+}
