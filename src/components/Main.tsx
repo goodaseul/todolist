@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
+// 컴포넌트
 import TodoInput from "./TodoInput";
 import TodoList from "./TodoList";
+// 타입설정
 import { Todo } from "../types";
 
 const Main = () => {

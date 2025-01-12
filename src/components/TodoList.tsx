@@ -36,9 +36,9 @@ const TodoList: React.FC<TodoListProps> = ({ removeTodo, toggleComplete, saveTod
                                 수정 버튼을 누른 Todo의 ID와 기존 텍스트를 받아와서
                             */}
                             <div className="wrap_edit">
-                                <button onClick={() => startEditing(todo.id, todo.text)}> 수정 </button>
-                                <button onClick={() => toggleComplete(todo.id)}> 완료 </button>
-                                <button onClick={() => removeTodo(todo.id)}> Remove</button>
+                                <button onClick={() => startEditing(todo.id, todo.text)}> 수정</button>
+                                <button onClick={() => toggleComplete(todo.id)}> {todo.completed ? "진행" : "완료"} </button>
+                                <button onClick={() => removeTodo(todo.id)}>제거</button>
                             </div>
                         </>
                     )}
