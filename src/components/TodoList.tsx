@@ -18,7 +18,7 @@ const TodoList: React.FC<TodoListProps> = ({ removeTodo, toggleComplete, saveTod
             {/* 부모 요소인 <ul> 추가 */}
             {todos.map((todo) => (
                 <li key={todo.id}>
-                    우선 순위 : {todo.priority}&nbsp; | &nbsp;
+                    {/* 우선 순위 : {todo.priority}&nbsp; | &nbsp; */}
                     {editingTodoId === todo.id ? (
                         <>
                             <input type="text" value={editingText} onChange={(e) => setEditingText(e.target.value)} />

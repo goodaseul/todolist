@@ -102,7 +102,7 @@ const Main = () => {
         <div className="todo_container">
             <h1>Todo List</h1>
             <div className="wrap_btn">
-                <button onClick={() => handleSortOptionChange("priority")}>우선순위 정렬</button>
+                {/* <button onClick={() => handleSortOptionChange("priority")}>우선순위 정렬</button> */}
                 <button onClick={() => handleSortOptionChange("text")}>가나다 정렬</button>
             </div>
             <div className="wrap_components">
