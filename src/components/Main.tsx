@@ -10,12 +10,11 @@ const Main = () => {
     const [todos, setTodos] = useState<Todo[]>([]); // Todo 목록 상태 관리
 
     // 정렬 관리
-    const [sortOption, setSortOption] = useState<"priority" | "text">(() => {
-        // 초기 상태를 localStorage에서 불러오기
-        const savedSortOption = localStorage.getItem("sortOption");
-        return savedSortOption === "priority" || savedSortOption === "text" ? savedSortOption : "priority";
-    });
 
+    const [sortOption, setSortOption] = useState<string>(() => {
+        const savedSortOption = localStorage.getItem("sortOption");
+        return savedSortOption || "text"; // 기본값을 "text"로 설정
+    });
     // 수정 관리
     const [editingTodoId, setEditingTodoId] = useState<number | null>(null); //editingTodoId는 수정 중인 Todo의 ID를 저장하며, 수정 중이 아닌 경우 null
     const [editingText, setEditingText] = useState<string>(""); // 입력필드 내용 관리 수정 중인 텍스트 저장
@@ -23,7 +22,7 @@ const Main = () => {
     const newTodo: Todo = {
         id: Date.now(),
         text: inputValue,
-        priority: todos.length + 1,
+        // priority: todos.length + 1,
         completed: false,
     };
 
@@ -70,17 +69,15 @@ const Main = () => {
 
     // 정렬된 Todo 목록 생성
     const sortedTodos: Todo[] = [...todos].sort((a, b) => {
-        if (sortOption === "priority") {
-            return a.priority - b.priority; // 우선순위 기준으로 정렬
-        }
         if (sortOption === "text") {
             return a.text.localeCompare(b.text); // 가나다순 정렬
         }
 
-        return 0; // 기본값 (변경 없음)
+        return 0; // 기본값은 우선순위 정렬
     });
+
     // LocalStorage 에 저장
-    const saveToLocalStorage = (todos: Todo[], sortOption: "priority" | "text") => {
+    const saveToLocalStorage = (todos: Todo[], sortOption: string) => {
         localStorage.setItem("todos", JSON.stringify(todos));
         localStorage.setItem("sortOption", sortOption);
     };
@@ -93,7 +90,7 @@ const Main = () => {
         }
     }, []);
 
-    const handleSortOptionChange = (option: "priority" | "text") => {
+    const handleSortOptionChange = (option: string) => {
         setSortOption(option);
         saveToLocalStorage(todos, option);
     };
