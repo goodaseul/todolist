@@ -9,12 +9,6 @@ const Main = () => {
     const [inputValue, setInputValue] = useState<string>(""); // 입력값 상태 관리
     const [todos, setTodos] = useState<Todo[]>([]); // Todo 목록 상태 관리
 
-    // 정렬 관리
-
-    const [sortOption, setSortOption] = useState<string>(() => {
-        const savedSortOption = localStorage.getItem("sortOption");
-        return savedSortOption || "text"; // 기본값을 "text"로 설정
-    });
     // 수정 관리
     const [editingTodoId, setEditingTodoId] = useState<number | null>(null); //editingTodoId는 수정 중인 Todo의 ID를 저장하며, 수정 중이 아닌 경우 null
     const [editingText, setEditingText] = useState<string>(""); // 입력필드 내용 관리 수정 중인 텍스트 저장
@@ -32,14 +26,14 @@ const Main = () => {
         const updatedTodos = [...todos, newTodo];
         setTodos(updatedTodos);
         setInputValue("");
-        saveToLocalStorage(updatedTodos, sortOption); // 저장
+        saveToLocalStorage(updatedTodos); // 저장
     };
 
     // 특정 id 삭제
     const removeTodo = (id: number) => {
         const updatedTodos = todos.filter((todo) => todo.id !== id); // filter 메서드는 배열에서 특정 조건을 만족하는 항목만 남기고 새로운 배열을 만든다. 즉, 삭제하려는 항목을 제외한 나머지 항목들로 상태를 재설정.
         setTodos(updatedTodos);
-        saveToLocalStorage(updatedTodos, sortOption);
+        saveToLocalStorage(updatedTodos);
     };
 
     const toggleComplete = (id: number) => {
@@ -48,7 +42,7 @@ const Main = () => {
         // todo.id !== id라면 항목을 변경하지 않고 그대로 반환합니다.
         // map의 결과로 생성된 새로운 배열을 setTodos를 통해 상태로 업데이트합니다.
         setTodos(updatedTodos);
-        saveToLocalStorage(updatedTodos, sortOption);
+        saveToLocalStorage(updatedTodos);
     };
 
     const startEditing = (id: number, text: string) => {
@@ -64,22 +58,12 @@ const Main = () => {
         setTodos(updatedTodos);
         setEditingTodoId(null); // 수정 모드 종료
         setEditingText("");
-        saveToLocalStorage(updatedTodos, sortOption);
+        saveToLocalStorage(updatedTodos);
     };
 
-    // 정렬된 Todo 목록 생성
-    const sortedTodos: Todo[] = [...todos].sort((a, b) => {
-        if (sortOption === "text") {
-            return a.text.localeCompare(b.text); // 가나다순 정렬
-        }
-
-        return 0; // 기본값은 우선순위 정렬
-    });
-
-    // LocalStorage 에 저장
-    const saveToLocalStorage = (todos: Todo[], sortOption: string) => {
+    // LocalStorage에 저장
+    const saveToLocalStorage = (todos: Todo[]) => {
         localStorage.setItem("todos", JSON.stringify(todos));
-        localStorage.setItem("sortOption", sortOption);
     };
 
     // localStorage에서 불러오기
@@ -90,23 +74,14 @@ const Main = () => {
         }
     }, []);
 
-    const handleSortOptionChange = (option: string) => {
-        setSortOption(option);
-        saveToLocalStorage(todos, option);
-    };
-
     return (
         <div className="todo_container">
             <h1>Todo List</h1>
-            <div className="wrap_btn">
-                {/* <button onClick={() => handleSortOptionChange("priority")}>우선순위 정렬</button> */}
-                <button onClick={() => handleSortOptionChange("text")}>가나다 정렬</button>
-            </div>
             <div className="wrap_components">
                 {/* 입력 및 버튼 */}
                 <TodoInput inputValue={inputValue} setInputValue={setInputValue} handleAddTodo={handleAddTodo} />
                 {/* Todo 목록 */}
-                <TodoList todos={sortedTodos} removeTodo={removeTodo} toggleComplete={toggleComplete} startEditing={startEditing} editingTodoId={editingTodoId} editingText={editingText} setEditingText={setEditingText} setEditingTodoId={setEditingTodoId} saveTodo={saveTodo} />
+                <TodoList todos={todos} removeTodo={removeTodo} toggleComplete={toggleComplete} startEditing={startEditing} editingTodoId={editingTodoId} editingText={editingText} setEditingText={setEditingText} setEditingTodoId={setEditingTodoId} saveTodo={saveTodo} />
             </div>
         </div>
     );
